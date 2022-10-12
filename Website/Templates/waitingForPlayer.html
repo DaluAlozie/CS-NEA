@@ -1,0 +1,34 @@
+{%extends "layout.html"%} {% block content %}
+
+<div id="waiting" class="page-heading">Waiting For Opponent</div>
+<div class="page-heading">
+    {% if current_user.get_room().get_scope().upper() == "PRIVATE" %}
+        Room Code: {{ current_user.get_room().get_roomID()}} 
+    {% endif %}    
+     | {{current_user.get_room().get_scope()}} |
+</div>
+
+<div class="half-container">
+    <div class="half">{{ current_user.get_username()}}</div>
+
+    <div id="half2" class="half"></div>
+</div>
+
+<script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+<script src="{{url_for('static', filename='jsFiles/waitingForPlayer.js')}}"></script>
+
+<style>
+    main {
+        height: max-content;
+        width: 98%;
+        border: 20px solid orange;
+        border-radius: 90px;
+        overflow: hidden;
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+    }
+</style>
+
+{% endblock %}

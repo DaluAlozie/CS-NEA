@@ -1,0 +1,114 @@
+{%extends "layout.html"%}
+
+{% block content %}
+<script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+
+<div class="page-container">
+  <div id="id" class="forum-table">
+    <div class="forum-heading">
+
+      <span class="forum-title-container">
+        <h3>Report Listing</h3>
+      </span>
+    </div>
+    <div class="forum-thread-header">
+
+    </div> 
+
+    <div id="all-posts-container" class="all-posts-container">
+      <hr class="thread-seperator">
+      {% for report in allReports %}
+
+      {% if report.get_resolved() == 0 %}
+      
+      {% if  report.get_reporterName().upper() != current_user.get_username().upper() %}
+
+      {% if  report.get_post().get_user().upper() != current_user.get_username().upper() %}
+
+        <div id="{{ report.get_displayID() }}" class="report-wrapper">
+          <span class="inbox-metadata">Reporter: {{report.get_reporterName().upper()}}</span> 
+          <div class="report-item">
+            <h2>Post</h2>
+            <hr class="reply-seperator">
+            <div class="report-post">
+              
+              <div class="post-container-thread reports">
+          
+                <div class="main-post-container post-item">
+                  <div>
+                    <div class="post-content post-message">{{ report.get_post().get_content() }}</div>
+                  </div>
+                </div>
+                <div class="forum-attachment-container">
+                  <img class="forum-attachment" src="{{ report.get_post().get_attachmentHeader() }}{{ report.get_post().get_base64File() }}">
+                </div>
+                <div class="post-item">
+                  <div class="post-metadata">
+                    <small class="post-metadata-label">Posted By: </small>
+                    <small class="posted-by"><span class="post-content post-sender">{{ report.get_post().get_user() }}</span></small>
+                  </div>
+                  <div class="post-metadata">
+                    <small class="post-metadata-label">Date Posted: </small>
+                    <small class="date-posted">
+                        <span class="post-content">{{ report.get_post().get_displayDate() }}</span>
+                    </small>
+                  </div>
+                  <div class="post-metadata">
+                    <small class="post-metadata-label">Replies: </small>
+                    <small class="reply-count">{{ report.get_post().get_replyCount() }}</small>
+                  </div>
+                  <div class="post-metadata">
+                    <small class="post-metadata-label">Tags: </small>
+                    <small class="tags">
+                        <span class="post-content post-tag">{% for tag in report.get_post().get_tags() %}{{ tag }} {% endfor %}</span>
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h2>Reason for Report</h2><div class="inbox-metadata"><span class="noti-content">{{ report.get_displayDate() }}</span>     <span class="noti-content">{{report.get_displayTime()}}</span></div>
+          
+          <hr class="reply-seperator">
+          <div class="report-item">
+            <div class="report-reason">
+              {{ report.get_reason() }}
+            </div>      
+          </div>
+
+          <div class="report-item">
+            <button class="form-submit" onclick="dismissReport('{{ report.get_displayID() }}')">Dismiss</button>
+            <button class="form-submit" onclick="deletePost('{{ report.get_displayID() }}')">Delete Post</button>      
+          </div>
+        </div> 
+        <hr id="{{ report.get_displayID() }}seperator" class="thread-seperator">
+
+      {% endif %}
+        
+      {% endif %}
+    
+      {% endif %}
+    
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+  <style>
+    .page-container{
+      width: inherit;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      height: max-content;
+    }
+    main{
+      height: max-content;
+      margin-bottom: auto;
+    }
+  </style>
+
+<script src="{{url_for('static', filename='jsFiles/reports.js')}}"></script>
+
+{% endblock %}

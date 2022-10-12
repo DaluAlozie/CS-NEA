@@ -1,0 +1,1976 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    white-space: nowrap;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: white;
+}
+
+hr {
+    background: white;
+    padding: 0;
+    margin: 0.1%;
+    border: 0;
+}
+
+.background-logo{
+    width: 62vw;
+    height: 72vh;
+        
+}
+
+.close-div {
+    display: none;
+}
+
+.backdrop-filter {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(255, 219, 153, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    min-width: fit-content;
+    min-height: fit-content;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    background: rgb(255, 219, 153);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: fit-content;
+    min-height: fit-content;
+    position: relative;
+}
+
+.page-container {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    background: inherit;
+    margin-bottom: 30px;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+}
+
+footer {
+    width: 100%;
+    height: 500px;
+    min-height: 300px;
+    bottom: 0;
+    align-self: stretch;
+    background: orange;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+    position: static;
+}
+
+.footer-item {
+    text-align: center;
+}
+
+header {
+    position: relative;
+    z-index: 11;
+    background: orange;
+    height: max-content;
+    margin-bottom: 10px;
+}
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 10000;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content */
+
+.modal-content.message-wrapper {
+    padding: 20px;
+    width: 500px;
+    height: 250px;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#modalQuestion {
+    white-space: normal
+}
+
+.modal-btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: max-content;
+    margin-top: auto;
+}
+
+
+/* The Close Button */
+
+.closeModalSpan {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: auto;
+    text-align: center;
+    background: none;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Navigation Bar */
+
+.nav-item {
+    height: fit-content;
+    width: fit-content;
+    font-size: 140%;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    padding: 6px 20px 6px 20px;
+    margin: 0 30px 0 30px;
+}
+
+.nav-item:hover {
+    width: fit-content;
+    color: white;
+    text-decoration: none;
+    background: rgb(248, 209, 138);
+}
+
+.navbar-nav {
+    width: 100%;
+    height: max-content;
+    border-radius: 10px;
+    background: orange;
+}
+
+nav {
+    width: 100%;
+    height: 100px;
+}
+
+
+/* Home Page */
+
+.account-info {
+    height: 80px;
+    width: 200px;
+    background: #ffa500;
+    border-radius: 50px;
+    border: 5px solid white;
+    text-align: center;
+    color: rgb(235, 235, 235);
+    padding: 12px;
+    font-weight: 600;
+    white-space: normal;
+}
+
+
+/* Sign up Login Page */
+
+.form {
+    height: max-content;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    padding: 10px 30px 15px 30px;
+    margin: 50px 0 50px 0;
+    align-self: center;
+    border-radius: 20px;
+    border: 10px solid;
+    border-color: orange;
+    background: rgb(252, 196, 93);
+}
+
+.form-item:last-child {
+    align-self: flex-end;
+}
+
+.form-item:nth-last-child(2) {
+    text-align: right;
+}
+
+.form-submit {
+    height: 45px;
+    width: 100px;
+    border: 3px solid white;
+    border-radius: 10px;
+    background: orange;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.form-submit:hover+.info-hide {
+    display: block;
+    margin-left: 310px;
+    margin-top: -70px;
+}
+
+.form-submit:hover {
+    border-color: white;
+    color: rgb(255, 255, 255);
+    background: rgb(255, 145, 0);
+}
+
+.form-submit:active {
+    color: rgb(255, 255, 255);
+    background: orangered;
+    outline: none;
+    box-shadow: none;
+}
+
+.form-submit:focus {
+    border-color: white;
+    background: orangered;
+    outline: none;
+    box-shadow: none;
+}
+
+.sign-up-link {
+    color: blue;
+}
+
+h6 {
+    font-size: 12px;
+}
+
+.check-button.form-item {
+    margin: 10px 0 10px 0;
+}
+
+
+/* Game Page */
+
+.game-display {
+    height: max-content;
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 150px;
+    border: 20px solid orange;
+    background: rgb(255, 195, 82);
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+}
+
+#play-game {
+    background-image: url('games-media/createGameDisplay.png');
+}
+
+#create-game {
+    background-image: url('games-media/buildGameDisplay.png');
+}
+
+#join-game {
+    background-image: url('games-media/joinGameDisplay.png');
+}
+
+.game-screen {
+    width: 95%;
+    height: 100px;
+    min-height: 80%;
+    margin: 10px 0 0 0;
+    background-image: url('games-media/createGameDisplay.png');
+    border-radius: inherit;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 5px solid white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.game-screen-icon {
+    width: 90%;
+    height: 90%;
+}
+
+.play-button {
+    height: 15%;
+    width: 45%;
+    min-width: max-content;
+    min-height: 40px;
+    background: orange;
+    border: 10px solid;
+    border-radius: 100px;
+    border-color: white;
+    font-size: 20px;
+    overflow: hidden;
+    margin: 10px 0 5px 0;
+    color: white;
+}
+
+.play-button.game-page {
+    font-size: 20px;
+    line-height: 15px;
+    margin: 3px 0 4px 0;
+    border-width: 6px;
+    color: white;
+}
+
+.play-button:hover {
+    background: rgb(255, 136, 0);
+    color: lightgray;
+}
+
+.class-form {
+    align-self: flex-start;
+    margin: 25px 10px 100px 20px;
+    width: max-content;
+    padding: 46px 20px 45px 20px;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    width: max-content;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.col {
+    width: max-content;
+}
+
+.game-bottom-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.remove-item-btn {
+    height: 50px;
+    width: 50px;
+    font-size: 15px;
+    border: 7px solid white;
+    text-align: center;
+}
+
+.games-container {
+    height: max-content;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-row {
+    height: max-content;
+    width: max-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px 230px 10px 0;
+    max-width: 100vw;
+    
+}
+
+.game-display.game-page {
+    width: 300px;
+    height: 300px;
+    border-radius: 80px;
+    border-width: 8px;
+}
+
+.game-row.game-page {
+    width: 100%;
+}
+
+.myGames-btn.btn {
+    width: 300px;
+}
+
+.myGames-display.game-display {
+    height: max-content;
+    width: 500px;
+}
+
+.myGames-screen.game-screen {
+    height: 350px;
+    width: 100%;
+    border-width: 8px;
+}
+
+.form-submit.remove-item-btn.delete-game {
+    height: 50px;
+    width: 300px;
+    margin: 10px 0 0 0;
+}
+
+.game-label {
+    width: 100%;
+    height: max-content;
+    text-align: center;
+    font-size: 60px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: orange;
+    font-weight: 800;
+}
+
+.play-button.removeGameFromClassBtn {
+    height: 70px;
+    width: 100%;
+    border-radius: 10px;
+    align-self: center;
+    border: 8px solid white;
+    color: white;
+}
+
+.hide {
+    display: none;
+    position: absolute;
+    margin-left: 610px;
+    font-size: 20px;
+    width: max-content;
+}
+
+.info-hide.leaderboard {
+    margin-left: 310px;
+    margin-top: -70px;
+}
+
+.leaderboard-btn:hover+.hide {
+    display: block;
+}
+
+.game-info-table {
+    width: max-content;
+    align-self: center;
+    color: white;
+}
+
+.game-info-data {
+    padding: 0 30px 0 0;
+}
+
+.game-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin: 50px;
+    width: 700px;
+}
+
+.game-info-column-head {
+    padding: 0 30px 0 0;
+}
+
+.game-info-table-head {
+    margin: 0 0 30px 0;
+}
+
+.game-info-form {
+    text-align: center;
+    width: max-content;
+    color: white;
+    min-width: 360px;
+    animation: fadein 1s;
+    opacity: 0.9;
+}
+
+.game-btns-container {
+    width: max-content;
+    height: max-content;
+    margin-left: 50px;
+}
+
+.multiplayer-btns-container {
+    width: max-content;
+    height: max-content;
+}
+
+.scope-toggle-icon {
+    height: 80%;
+    width: 80%;
+}
+
+.myGames-btn.btn.play-button {
+    width: 250px;
+}
+
+
+/* Sidebar */
+
+.sidebar-wrapper {
+    min-height: 1500px;
+    background: orange;
+    border-radius: 2px;
+    overflow-y: hidden;
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 0 0 10px 0;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0 0 0 0;
+    margin: 10px 10px 10px 10px;
+}
+
+.sidebar-heading {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 175%;
+    margin: 7% 0 10% 0;
+}
+
+.sidebar-item {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 100%;
+    padding: 5px 5px 5px 0;
+    margin: 0 5px 5px 5px;
+}
+
+a:hover {
+    color: rgb(131, 128, 129);
+    text-decoration: none;
+}
+
+.icon {
+    height: 10%;
+    width: 10%;
+}
+
+.sidebar-collapse-btn {
+    height: 70px;
+    width: 70px;
+    background: orange;
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 0 10px 10px 0;
+}
+
+.sidebar-collapse-btn:focus {
+    box-shadow: none;
+}
+
+.sidebar-collapse-btn:active {
+    background: orangered;
+}
+
+.expand-sidebar {
+    width: 300px;
+    transition: width 500ms ease;
+    border: 5px solid rgb(255, 255, 255);
+}
+
+.collapse-sidebar {
+    width: 0px;
+    transition: width 500ms ease;
+    border: none;
+}
+
+.btn-logged-out {
+    height: 50px;
+    width: 400px;
+    min-width: max-content;
+    background: orange;
+    margin: 50px;
+    padding: 0 0 8% 0;
+    border-radius: 70vh;
+    border: 3vh solid rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-size: 10vh;
+    text-align: center;
+    overflow: hidden;
+}
+
+.btn {
+    color: white;
+}
+
+
+/* Classes Page */
+
+.class-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: max-content;
+    text-align: start;
+    margin-bottom: 100px;
+    padding: 0 10px 0 10px;
+}
+
+.class-list-item {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    height: max-content;
+    width: fit-content;
+    align-self: center;
+}
+
+.class-student-name {
+    margin-left: 30px;
+    font-size: 25px;
+    color: white;
+    align-self: flex-start;
+    height: inherit;
+}
+
+.class-content-container {
+    display: flex;
+    flex-direction: row;
+    height: max-content;
+}
+
+.class-banner {
+    max-width: 100vw;
+    height: max-content;
+    background: orange;
+    border-radius: 10px;
+    text-align: center;
+    padding: 7px;
+    margin: 0 10px 0 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+/* Main Game */
+
+.game-display.mainGame {
+    height: 680px;
+    width: 1200px;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.scoreboard-wrapper {
+    margin: 10px 0 10px 0;
+    position: absolute;
+    height: 100px;
+    width: 1175px;
+    border-radius: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.scoreboard {
+    width: 200px;
+    height: 100%;
+    background: rgb(252, 196, 93);
+    border: 10px solid orange;
+    font-family: "pixel2";
+    text-align: center;
+    font-size: 120px;
+    border-radius: 20px;
+    line-height: 90px;
+}
+
+.scoreboard.left {
+    margin-left: 60px;
+}
+
+.scoreboard.right {
+    margin-right: 60px;
+}
+
+.scoreboard.timer {
+    align-self: flex-start;
+    font-size: 35px;
+    height: 45px;
+    width: 110px;
+    border-radius: 15px;
+    line-height: 27px;
+}
+
+.visible-map {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+canvas {
+    background: url(mainGame-media/pixelGrass.png);
+    height: 5500px;
+    width: 8000px;
+    align-self: center;
+    margin-top: 0;
+}
+
+.scoreboard-label {
+    font-size: 30px;
+    font-family: "pixel";
+    width: max-content;
+    position: absolute;
+}
+
+.scoreboard-label.right {
+    right: 60px;
+}
+
+.scoreboard-label.left {
+    left: 60px;
+}
+
+.winner-display {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: 160px;
+    font-family: "pixel";
+    top: 150px;
+    width: inherit;
+    height: inherit;
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: center;
+}
+
+.play-again-btn {
+    height: 100px;
+    width: 200px;
+    font-size: 30px;
+    border-radius: 30px;
+    border-width: 5px;
+    z-index: 200;
+}
+
+.mute-game-wrapper {
+    width: max-content;
+    height: max-content;
+}
+
+.mute-icon {
+    height: 20px;
+    width: 28px;
+}
+
+.mute-btn {
+    border-radius: 400px;
+    width: 50px;
+    height: 50px;
+    margin-left: -50px;
+    border-width: 6px;
+    line-height: 1px;
+}
+
+.game-variable-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    height: max-content;
+}
+
+.game-finished-wrapper {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 30px 0 30px 0;
+}
+
+.mainGame-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 1265px;
+    height: max-content;
+    margin-top: 50px;
+}
+
+
+/* Waiting For Game */
+
+.half {
+    width: 50%;
+    height: 100%;
+    font-size: 70px;
+    color: rgb(255, 102, 0);
+    word-wrap: break-word;
+    white-space: normal;
+    font-family: pixel;
+}
+
+.half:first-child {
+    border-right: 2px solid orange;
+}
+
+.half:nth-child(2) {
+    border-left: 2px solid orange;
+}
+
+.half-container {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    margin: 20px;
+    height: 100%;
+    width: 99%;
+    align-self: center;
+    text-align: center;
+}
+
+.page-heading {
+    width: 100%;
+    height: max-content;
+    font-size: 60px;
+    text-align: center;
+    font-family: pixel;
+    color: white;
+}
+
+
+/* Choose Character */
+
+.road-option-container.select-character {
+    width: 1200px;
+    height: 600px;
+    align-self: center;
+}
+
+.character-option {
+    width: 200px;
+    height: 200px;
+    margin: 50px;
+    border: 5px solid rgb(252, 196, 93);
+}
+
+.character-option.chosen {
+    border: 5px solid white;
+}
+
+.start-button-container {
+    font-size: 40px;
+    font-family: pixel;
+    height: max-content;
+    text-align: center;
+}
+
+.td-choose-character {
+    width: 1200px;
+    height: 200px;
+}
+
+.start-button {
+    height: 150px;
+    border-width: 10px;
+    font-size: 50px;
+    font-family: pixel;
+}
+
+.table-title {
+    width: 100%;
+    height: 100px;
+    font-size: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "pixel2";
+    color: white
+}
+
+.select-character-wrapper {
+    width: max-content;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+}
+
+
+/* Join Game */
+
+.join-game {
+    width: 500px;
+    height: 300px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 60px;
+}
+
+.form-submit.join-game-btn {
+    height: 60px;
+    width: 100%;
+    font-size: 25px;
+    margin-top: 60px;
+    border-radius: inherit;
+    border-width: 5px;
+    text-align: center;
+}
+
+
+/* Build Game */
+
+#game-variables {
+    margin-top: 5px;
+}
+
+#questions {
+    align-self: flex-start;
+    margin-top: 0px;
+}
+
+.build-game-wrapper {
+    display: flex;
+    flex-direction: row;
+    max-width: 100vw;
+    justify-content: left;
+    align-self: flex-start;
+    height: max-content;
+    flex-wrap: wrap;
+    min-width: fit-content;
+}
+
+.brush-info {
+    position: absolute;
+    margin-top: -55px;
+    margin-left: 40px;
+    color: rgb(255, 102, 0);
+    font-size: 20px;
+}
+
+.game-variables {
+    margin-bottom: 10%;
+    width: 100%;
+    height: 70px;
+}
+
+.add-question-btn {
+    height: 50px;
+    width: 50px;
+    margin-top: 25px;
+}
+/* 
+.question-form.form{
+    width: 600px;
+} */
+
+.build-grid {
+    height: fit-content;
+    width: max-content;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.build-game-heading {
+    width: 100%;
+    font-size: 40px;
+    text-align: center;
+    color: white;
+    font-weight: 900;
+}
+
+.build-game-page-wrapper {
+    width: max-content;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.chosen {
+    border: 5px solid white;
+}
+
+.add-question-bottom-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.add-question-btn {
+    height: 50px;
+    width: 50px;
+    align-self: flex-end;
+}
+
+@font-face {
+    font-family: 'pixel';
+    src: url('Silkscreen/slkscre.ttf');
+}
+
+@font-face {
+    font-family: 'pixel3';
+    src: url('rexlia/rexlia\ free.ttf');
+}
+
+@font-face {
+    font-family: 'pixel2';
+    src: url('00-Starmap-Truetype/00TT.TTF');
+}
+
+.grid-cell {
+    background: none;
+    height: 30px;
+    width: 30px;
+    text-align: end;
+    border: none;
+    margin: 0;
+}
+
+.game-map-grid {
+    background: url(mainGame-media/pixelGrass.png);
+    width: 1110px;
+    height: 720px;
+    overflow: hidden;
+}
+
+.road-option-container {
+    height: max-content;
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    border-radius: 20px;
+    border: 10px solid;
+    border-color: orange;
+    background: rgb(252, 196, 93);
+    justify-content: center;
+}
+
+.road-option {
+    height: 100px;
+    width: 100px;
+    align-self: center;
+}
+
+.map-option-row {
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.road-item {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    border: 5px solid rgb(252, 196, 93);
+}
+
+.road-item:hover+.info-hide {
+    display: block;
+}
+
+.road-item.chosen {
+    border: 5px solid white;
+}
+
+.map-grid-row {
+    margin: 0;
+}
+
+.preview-button {
+    font-size: 40px;
+    width: 100%;
+    height: 70px;
+    border-radius: inherit;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 25px;
+}
+
+.map-icon {
+    height: 100%;
+    width: 97%;
+    margin: 0;
+    text-align: center;
+}
+
+.icon-label {
+    width: 100%;
+    text-align: center;
+    color: azure;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+
+/* Forum Page*/
+
+.message-wrapper {
+    width: max-content;
+    height: min-content;
+    padding: 0 20px 20px;
+    border: 10px solid orange;
+    border-radius: 20px;
+    background: rgb(252, 196, 93);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    left: 40%;
+}
+
+.message-bottom-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.message-wrapper:hover+.info-hide {
+    display: block;
+}
+
+.post-heading {
+    color: orange;
+    text-decoration: underline;
+    margin-bottom: 20px;
+    font-size: 50px;
+    font-weight: 500;
+}
+
+.other-text-box {
+    resize: none;
+}
+
+.search-icon {
+    height: 17px;
+    width: 17px;
+}
+
+.text-box {
+    font-size: 15px;
+    resize: none;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.message-sub-btn {
+    height: 30px;
+    width: 30px;
+}
+
+.deleted-post {
+    font-style: italic;
+    color: rgba(128, 128, 128, 0.8);
+}
+
+.word-count {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+body .close-div {
+    display: none;
+}
+
+.back-to-top-btn {
+    align-self: center;
+    justify-self: center;
+    text-decoration: none;
+    color: rgb(255, 123, 0);
+    font-size: 20px;
+}
+
+.back-to-top-btn:hover {
+    color: white;
+}
+
+.sort-label {
+    margin: 15px 0 5px 0;
+    font-size: 20px;
+    color: rgb(255, 136, 0);
+}
+
+.forum-thread-header-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+}
+
+.forum-thread-header-right {
+    margin-left: auto;
+    text-align: left;
+}
+
+.form-submit.sort-btn {
+    height: 45px;
+    width: 45px;
+    font-size: 15px;
+}
+
+select option {
+    margin: 40px;
+    background: orange;
+    color: rgb(255, 255, 255);
+}
+
+.filter-label {
+    color: rgb(255, 102, 0);
+}
+
+.post-div-info {
+    color: rgba(128, 128, 128, 0.4);
+    font-style: italic;
+}
+
+
+/* Keyboard */
+
+.keyboard-wrapper {
+    height: max-content;
+    width: max-content;
+    border: 5px solid rgb(255, 136, 0);
+    border-radius: 20px;
+    background: rgb(250, 189, 98);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 5px 5px 5px 5px;
+    position: absolute;
+    overflow: hidden;
+    align-self: center;
+    z-index: 0;
+}
+
+.keyboard-wrapper :first-child {
+    justify-content: flex-end;
+}
+
+.keyboard-wrapper :nth-child(2) {
+    justify-content: flex-start;
+}
+
+.keyboard-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.keyboard-key {
+    height: 65px;
+    width: 65px;
+    border-radius: 10px;
+    box-shadow: rgba(50, 100, 33, 0.1);
+    border: 5px solid white;
+    background: rgb(255, 145, 0);
+    margin: 3px 3px 3px 3px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.keyboard-btn {
+    height: 60px;
+    width: 80px;
+    border-radius: 10000px;
+    box-shadow: rgba(50, 100, 33, 0.1);
+    outline-color: royalblue;
+    background: rgb(255, 145, 0);
+    margin: 3px 3px 3px 3px;
+    border: 5px solid white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.keyboard-key:active {
+    background: rgb(255, 115, 0);
+}
+
+.keyboard-btn:active {
+    background: rgb(255, 115, 0);
+}
+
+.keyboard-btn-pressed {
+    background: rgb(255, 72, 0);
+}
+
+.selected {
+    box-shadow: 0 0 15px rgba(158, 202, 237, 0.9);
+    border: 4px solid rgba(158, 202, 237, 0.9);
+    transition: box-shadow 150ms ease;
+    transition: border 150ms reverse;
+}
+
+.close-btn-span {
+    margin: 1px 0 0 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+
+/* Forum Table */
+
+.forum-table {
+    width: 1100px;
+    height: fit-content;
+    padding: 30px;
+    border-radius: 10px;
+    background: rgb(252, 196, 93);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    margin: 50px 50px 50px 0;
+}
+
+.forum-filter {
+    height: max-content;
+    width: 400px;
+    background: rgb(252, 196, 93);
+    margin: 50px 0 50px 0;
+    border-radius: 10px;
+    padding: 1%;
+}
+
+.forum-title-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    background-color: orange;
+}
+
+.forum-filter-item {
+    margin: 15px 0 15px 0;
+}
+
+.sort-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.sort-list {
+    height: 45px;
+    width: 150px;
+    margin-right: 4px;
+}
+
+.show-thread-container {
+    justify-self: center;
+    width: 100px;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 2% 0 0;
+}
+
+.main-post-container {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    padding: 10px;
+    align-self: center;
+}
+
+.all-posts-container {
+    width: 100%;
+    height: max-content;
+}
+
+.post-highlight {
+    border: 8px solid rgba(255, 165, 0, 0.5);
+    border-radius: 10px;
+}
+
+button:focus {
+    outline: none;
+}
+
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 50px solid orange;
+    background: none;
+}
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 50px solid orange;
+    background: none;
+}
+
+.arrow-down:active {
+    border-top: 50px solid rgb(240, 68, 0);
+}
+
+.arrow-up:active {
+    border-bottom: 50px solid rgb(240, 68, 0);
+}
+
+.post-container-thread {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.post-container-reply {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.post-buttons {
+    display: flex;
+    flex-direction: row;
+    margin: 50px 0 0 130px;
+}
+
+.post-message {
+    word-wrap: break-word;
+    white-space: normal;
+    word-break: break-all;
+    text-indent: 10px;
+    width: 750px;
+}
+
+.post-metadata {
+    color: rgb(255, 103, 2);
+    font-weight: 500;
+}
+
+.toggler-container {
+    height: inherit;
+    width: 100px;
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.forum-attachment-container {
+    align-self: left;
+    overflow: hidden;
+    max-height: max-content;
+    width: 100%;
+    margin: 0 0 0 140px;
+}
+
+.forum-attachment {
+    max-width: 800px;
+}
+
+.arrow-up:hover+.info-hide {
+    display: block;
+    width: 100px;
+}
+
+.arrow-down:hover+.info-hide {
+    display: block;
+    width: 100px;
+}
+
+.post-metadata-label {
+    color: white;
+    white-space: pre;
+}
+
+.metadata-btn {
+    margin: 5px;
+    width: max-content;
+    background: none;
+    color: inherit;
+}
+
+.metadata-btn:active {
+    color: rgb(255, 0, 0);
+}
+
+.post-item {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.post-item:last-child {
+    align-self: flex-end;
+}
+
+.forum-thread-header {
+    height: 10%;
+    width: 100%;
+    margin: 0 0 1% 0;
+    color: white;
+    font-size: 60%;
+    font-weight: bolder;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.forum-filter-item.deleted-filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form-submit.deleted-filter-btn {
+    width: 130px;
+    height: 60px;
+    white-space: normal;
+    border-width: 5px;
+    margin-bottom: 0;
+    border-radius: 30px;
+}
+
+.focus-btn {
+    justify-self: right;
+    background: none;
+}
+
+.leaderboard-btn {
+    display: block;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    border: 10px solid rgb(255, 255, 255);
+    font-size: 30px;
+    z-index: 500;
+}
+
+.info-hide {
+    display: none;
+    position: absolute;
+    font-size: 20px;
+    width: max-content;
+    z-index: 2000;
+}
+
+.focus-btn:hover+.info-hide {
+    display: block;
+}
+
+.focus-icon {
+    height: 30px;
+    width: 30px;
+}
+
+.focused-reply {
+    border: 10px solid rgba(255, 255, 255, 0.8);
+    border-top: none;
+    border-bottom: none;
+}
+
+.focused-thread {
+    border: 10px solid orange;
+    border-top: none;
+    border-bottom: none;
+    border-radius: none;
+}
+
+.info-box {
+    background: rgb(255, 255, 255);
+    color: rgb(110, 109, 109);
+    height: max-content;
+    width: max-content;
+    max-width: 85px;
+    font-size: 15px;
+    white-space: normal;
+    word-wrap: normal;
+    text-align: center;
+    border-radius: 3px;
+    padding: 5px;
+    opacity: 0.9;
+    font-weight: 350;
+    animation: fadein 1s;
+}
+
+.reply-button {
+    color: rgb(255, 103, 2);
+    background: none;
+}
+
+.reply-icon {
+    height: 18px;
+    width: 18px;
+    margin: 0 0 0 5px;
+}
+
+.add-thread-btn {
+    width: fit-content;
+    height: 50px;
+    margin: 0 0 10px 0;
+    padding: 5px 5px 5px 5px;
+    background: #ffa500;
+    border: 5px solid white;
+}
+
+.thread-seperator {
+    margin: 10px;
+    padding: 5px;
+    border-radius: 50px;
+    opacity: 0.4;
+}
+
+.reply-seperator {
+    margin: 0 0 10px 0;
+    padding: 2px;
+    border-radius: 50px;
+    opacity: 0.2;
+}
+
+.forum-heading {
+    background: orange;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0 0 10px 0;
+}
+
+
+/* Manage Games and Classes*/
+
+.delete-class-btn {
+    align-self: center;
+    margin-left: auto;
+}
+
+.create-class-form {
+    width: 90%;
+    height: 80px;
+    margin: 0 0 30px 10px;
+}
+
+.class-form-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    margin: 50px;
+}
+
+.class-form-body {
+    width: max-content;
+    height: max-content;
+    min-width: 300px;
+    text-align: center;
+}
+
+.student-input {
+    border-radius: 10px;
+    width: 200px;
+    height: 50px;
+}
+
+.add-student-wrapper {
+    margin: 40px 0 0 20px;
+}
+
+.banner-text {
+    font-size: 35px;
+    color: white;
+    white-space: pre;
+    margin-left: auto;
+}
+
+.class-name{
+    margin-left: auto;
+}
+
+
+/* Inbox */
+
+.inbox-alert {
+    width: 32px;
+    height: 32px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    font-size: 15px;
+    border: 3px rgb(255, 115, 0) solid;
+    padding: 1px;
+    color: red;
+}
+
+.icon-button {
+    background: none;
+    align-self: flex-end;
+}
+
+.delete-noti-btn:hover+.info-hide {
+    display: block;
+}
+
+.search-bar {
+    margin: 10px 0 0 0;
+    width: 200px;
+}
+
+htext {
+    background: rgb(255, 115, 0);
+    margin: none;
+    width: fit-content;
+    padding: none;
+    color: white;
+}
+
+.flash-message.fade-out {
+    animation: fadeout 1s;
+    opacity: 0;
+    z-index: -10000000;
+}
+
+.flash-message {
+    opacity: 1;
+    z-index: 1000000000;
+    position: fixed;
+    width: 100%;
+}
+
+.inbox-container {
+    background: rgb(252, 196, 93);
+    padding: 20px;
+    margin: 0 0 20px 0;
+    height: max-content;
+    min-height: 800px;
+}
+
+.inbox-tab {
+    margin: 10px;
+    font-size: 15px;
+    width: max-content;
+    padding: 5px;
+    border-radius: 40px;
+    color: orange;
+    background: white;
+    border: 5px solid orange;
+    width: 130px;
+}
+
+.inbox-tab:hover+.info-hide {
+    display: block;
+}
+
+.inbox-tab:hover {
+    color: rgb(255, 182, 45);
+    text-decoration: underline;
+}
+
+.accept-btn {
+    height: 40px;
+    width: 40px;
+    font-size: 15px;
+    margin: 0 5px 0 5px;
+}
+
+.noti-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0 0 0;
+}
+
+.noti-type {
+    color: rgba(151, 148, 148, 0.7);
+    font-size: 10px;
+}
+
+.noti-link {
+    color: orange;
+}
+
+.noti-link:hover {
+    color: rgb(255, 182, 45);
+    text-decoration: underline;
+}
+
+.accept-reject {
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+
+.delete-noti-btn {
+    margin: 35px 0 5px 0;
+}
+
+.noti-leftside {
+    text-align: right;
+}
+
+.inbox-metadata {
+    font-size: 13px;
+    color: rgba(128, 128, 128, 0.3);
+    white-space: pre-wrap;
+    margin-left: auto;
+}
+
+
+/* Report Page */
+
+.all-report-containers {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    background: rgb(245, 187, 79);
+    border-radius: 30px;
+    border: 10px solid rgba(255, 255, 255, 0.7);
+}
+
+.post-container-thread.reports {
+    width: 940px;
+}
+
+.report-post {
+    border-radius: 20px;
+    width: max-content;
+    border: 10px solid rgba(255, 165, 0, 0.4);
+    justify-self: center;
+    align-self: center;
+}
+
+.report-wrapper {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+    padding: 20px;
+    align-content: center;
+    border-radius: inherit;
+}
+
+.report-item {
+    margin: 0 0 25px 0;
+    width: 100%;
+}
+
+.btn.admin-link-toggler {
+    background: none;
+    height: max-content;
+    margin: 0 10px 0 10px;
+    width: 150px;
+}
+
+.admin-link-toggler:hover+.info-hide {
+    display: block;
+    margin-left: 70px;
+    margin-top: 10px;
+}
+
+.admin-link-toggler-span {
+    height: max-content;
+    width: max-content;
+}
+
+.admin-link-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    overflow: hidden;
+}
+
+.nav-item.admin-link {
+    padding: 7px 60px 7px 60px;
+    height: max-content;
+    min-width: none;
+}
+
+
+/* Admin Page */
+
+.class-form.make-mod-form {
+    width: 100%;
+    height: max-content;
+    min-height: 400px;
+    border-radius: 5px;
+}
+
+.class-form-body.make-mod-form {
+    width: 100%;
+    height: max-content;
+    min-height: 400px;
+}
+
+.class-name.admin-page {
+    border-radius: 10px;
+}
+
+.add-student-wrapper.admin-page {
+    margin: 10px 0 20px auto;
+}
+
+
+/* KeyFrames */
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.9;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+        z-index: 100;
+    }
+    to {
+        opacity: 0;
+        z-index: -1;
+    }
+}

@@ -1,0 +1,150 @@
+{%extends "gameLayout.html"%}
+
+{% block content2 %}
+<div id="mode" hidden>{{ mode }}</div>
+</button>
+{% if mode == "Edit" %}
+<div id="GameID" hidden>{{ current_user.get_gameToEdit().get_displayID() }}</div>
+{% endif %}
+
+<div class="build-game-page-wrapper">
+    <div class="build-game-heading">Mode: {{ mode }} {% if mode == "Edit"%}| Currently Editing: <i>' {{ current_user.get_gameToEdit().get_name() }} '{% endif %} </i></div>
+    <div class="build-game-wrapper">
+        <div id="questions" method="POST" class="question-form form">
+            <div style="display: flex; flex-direction: column; align-self: flex-end;">
+                <button id="scriptToggler" onclick="toggleScript(event)" class="form-submit remove-item-btn" type="button" state="2">off</button>
+                <div class="info-hide" style="margin-left: 60px; margin-top: -10px;">
+                    <div class="info-box">
+                        Toggle Text Script
+                    </div>
+                </div>
+            </div>
+            <div class="question-container">
+                <div class="row form-group">
+                    <button class="form-control form-submit add-question-btn" type="button">−</button>
+                    <div class="info-hide" style="margin-left: -85px;">
+                        <div class="info-box">
+                            Remove Question
+                        </div>
+                    </div>
+                    <div class="col">
+                    <label for="username">Question</label>
+                    <input type="text" class="form-control question" minlength="1">
+                    </div>
+                    <div class="col form-group">
+                    <label>Answer</label>
+                    <input type="text" class="form-control answer" minlength="1">
+                    </div>
+                </div>
+            </div>
+            <button onclick="addQuestion('','')" class="form-control form-submit add-question-btn" type="button">✛</button>
+            <div class="info-hide" style="margin-left: 430px; margin-top: 160px;">
+                <div class="info-box">
+                    Add Question
+                </div>
+            </div>
+            <div class="add-question-bottom-row">
+                <span><button  class="form-control form-submit"  onclick="saveGame();" style="align-self:flex-start;">Save</button></span>
+                <span> <a class="form-control form-submit" role="button" href="{{url_for('previewGame')}}" target="_blank" onclick="previewGame(event);" style="align-self:flex-start;">Preview</a></span>
+            </div>
+            <div class='text-danger' style="margin-top: 10px;"></div>
+        </div>
+        <div class="game-display build-grid">
+            <table id="game-map" cellspacing="0">
+            </table>
+        </div>
+        <div> 
+            <table class="road-option-container" cellspacing="0">
+                <tr class="map-option-row">
+                    <td id="road-container" class="road-item">
+                        <span class="brush-info">Pick a brush and add to the canvas !!!</span>
+                        <label class="icon-label" for="Road">Road</label>
+                        <img id="Road" class="road-option" src="{{url_for('static', filename='buildGame-media/black-square.png')}}" alt="" iconType="image">
+                    </td>
+                    <td class="info-hide" style="margin-left: 110px; margin-top: 50px;">
+                        <div class="info-box">
+                            Road Brush
+                        </div>
+                    </td>
+
+                    <td id="house-container" class="road-item">
+                        
+                        <label class="icon-label" for="House">House</label>
+                        <img id="House" class="road-option" src="{{url_for('static', filename='buildGame-media/map-grid-house.png')}}" alt="" iconType="image">
+                        <span class="text-danger">A house must be </span>
+                        <span class="text-danger">on top of a road !!!</span>
+                    </td>
+                    <td class="info-hide" style="margin-left: 370px; margin-top: 50px;">
+                        <div class="info-box">
+                            House Brush
+                        </div>
+                    </td>
+                </tr>
+                <tr class="map-option-row">
+                    <td id="mouse-container" class="road-item">
+                        <label class="icon-label" for="Mouse">Deselect</label>
+                        <img id="Mouse" class="road-option" src="{{url_for('static', filename='buildGame-media/map-grid-mouse.png')}} " alt="" iconType="mouse">
+                    </td>
+                    <td class="info-hide" style="margin-left: 110px; margin-top: 50px;">
+                        <div class="info-box">
+                            Deselect Tool
+                        </div>
+                    </td>
+    
+                    <td id="eraser-container" class="road-item">
+                        <label class="icon-label" for="Eraser">Delete</label>
+                        <img id="Eraser" class="road-option" src="{{url_for('static', filename='buildGame-media/map-grid-eraser.png')}}" alt="" iconType="eraser">
+                    </td>
+                    <td class="info-hide" style="margin-left: 380px; margin-top: 50px;">
+                        <div class="info-box">
+                            Eraser Tool
+                        </div>
+                    </td>
+                </tr>
+            </table>
+    
+            <form id="game-variables" class="form-control form">
+                <div class="form-item game-variables">
+                    <label class="icon-label" for="gameTitle" style="text-align: center;">Title</label>
+                    <input id="gameTitle" class="form-control" type="text" minlength="1" maxlength="10" placeholder="Enter a game title">
+                    <div class='text-danger' style="margin-top: 10px;"></div>
+                </div>    
+                <div class="form-item game-variables">
+                    <label class="icon-label" for="" style="text-align: center;">Duration</label>
+                    <select id="duration" class="form-select" aria-label="Default select example">
+                        <option value="10">10 Minutes</option>
+                        <option value="8">8 Minutes</option>
+                        <option value="6">6 Minutes</option>
+                        <option value="5" selected>5 Minutes</option>
+                        <option value="4">4 Minutes</option>
+                        <option value="3">3 Minutes</option>
+                    </select>
+                </div>
+                <div class="form-item game-variables">
+                    <label class="icon-label" for="" style="text-align: center;">Player Speed</label>
+                    <select id="speed" class="form-select" aria-label="Default select example">
+                        <option value="30">30</option>
+                        <option value="25">25</option>
+                        <option value="20">20</option>
+                        <option value="15" selected>15</option>
+                        <option value="10">10</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div id="tempElement" hidden></div>
+    </div>
+</div>
+<script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+<script src="{{url_for('static', filename='jsFiles/buildGame.js')}}"></script>
+
+<style>
+    main{
+        height: inherit;
+    }
+</style>
+
+
+{% endblock %}
+

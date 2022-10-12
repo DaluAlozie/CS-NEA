@@ -1,0 +1,111 @@
+{%extends "layout.html"%} {% block content %}
+<div class="page-container">
+    <div class="create-class-form">
+
+        <div class="row form-item">
+            <div class="col">
+                <input id="newClass" type="text" class="form-control" placeholder="Enter ClassName" minlength="2" maxlength="25" style="height: 100%;">
+            </div>
+            <div class="col">
+                <button class="form-item form-submit" onclick="createClass()" style=" align-self: center;">Create Class</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="all-class-container">
+        {% for class in current_user.get_classes() %} {% if class.get_teacherName().upper() == current_user.get_username().upper() %}
+        <div id="{{ class.get_displayID() }}">
+            <div class="class-banner">
+                <h1 class="class-name">Class {{ class.get_name() }}</h1>
+                <button onclick="deleteClass('{{ class.get_displayID() }}')" class="form-submit delete-class-btn">Delete Class</button>
+            </div>
+
+            <div class="form class-form">
+                <div class="class-form-body">
+                    <div class="row form-item" style="width:max-content;">
+                        <div class="col student-list">
+                            {% for student in class.get_students() %}
+                            <div class="class-list-item">
+                                <button onclick="removeStudent('{{student}}','{{ class.get_displayID() }}')" class="form-submit remove-item-btn">–</button>
+                                <div class="info-hide" style="margin-top: -15px; margin-left: -90px;">
+                                    <div class="info-box">
+                                        Remove Student
+                                    </div>
+                                </div>
+                                <div class="class-student-name">{{student.upper()}}</div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="col form-group">
+                            <div class="row" style="width:max-content;">
+                                <div class="col">
+                                    <input type="text" id="newStudent{{ class.get_displayID() }}" class="form-control" placeholder="Enter Student Username" style="width: 200px; height: 50px; margin-top: 4px;">
+                                </div>
+                                <div class="col" style="width:max-content; overflow: visible;">
+                                    <button onclick="addStudent('{{ class.get_displayID() }}','newStudent{{class.get_displayID()}}')" class="form-submit remove-item-btn">✛</button>
+                                    <div class="info-hide" style="margin-top: -15px; margin-left: 50px;">
+                                        <div class="info-box">
+                                            Add Student
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %} {% endfor %}
+    </div>
+
+    <div id="class-template" hidden>
+        <div class="class-banner">
+            <h1 class="class-name"></h1>
+            <button onclick="deleteClass()" class="form-submit delete-class-btn">Delete Class</button>
+        </div>
+
+        <div class="form class-form">
+            <div class="class-form-body">
+                <div class="row form-item" style="width:max-content;">
+                    <div class="col student-list">
+                    </div>
+                    <div class="col form-group">
+                        <div class="row" style="width:max-content;">
+                            <div class="col">
+                                <input type="text" class="form-control student-input" placeholder="Enter Student Username" style="width: 200px; height: 50px; margin-top: 4px;">
+                            </div>
+                            <div class="col" style="width:max-content; overflow: visible;">
+                                <button onclick="addStudent()" class="form-submit remove-item-btn add-student-btn">✛</button>
+                                <div class="info-hide" style="margin-top: -15px; margin-left: 50px;">
+                                    <div class="info-box">
+                                        Add Student
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+<script src="{{url_for('static', filename='jsFiles/myClasses.js')}}"></script>
+
+<style>
+    .page-container {
+        width: 99.9%;
+        height: max-content;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    main {
+        height: max-content;
+        margin-bottom: auto;
+        padding: 35px;
+    }
+</style>
+
+{% endblock %}

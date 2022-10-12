@@ -1,0 +1,209 @@
+{%extends "layout.html"%}
+{% block content %}
+
+<div class="page-container">
+
+
+    <div id="role" hidden>{{current_user.get_role3()}}</div>
+    <div id="backToTop"></div>
+    <div id="postModal" class="modal">
+
+        <!-- Modal content -->
+
+        <div id="createPost" class="message-wrapper">
+
+            <button id="postCloseModal" class="closeModalSpan" onclick="closePostModal()">&times;</button>
+
+            <span id="postHeading" class="post-heading">Thread</span>
+
+            <div class="form-group" style="padding: 0 5px 5px 5px;">
+
+                <input id="postTags" class="message-item form-control" type="text" placeholder="Tags" style="margin: 5px 5px 5px 0;" maxlength="30">
+
+                <textarea id="postMessage" class="message-item text-box form-control " placeholder="Start typing..." rows="5" cols="80" spellcheck="false" minlength="1" maxlength="500"></textarea>
+
+                <div id="postErrorSpan" class='text-danger error-span'></div>
+
+                <input id="realFileBtn" type="file" hidden="hidden">
+
+            </div>
+
+            <div class="message-bottom-row">
+
+                <button id="altFileBtn" class="btn" type="button" onclick="altButton('realFileBtn','altFileBtn')"><img class="message-sub-btn" src="https://img.icons8.com/ios/452/attach.png" alt="&#128206;"></button>
+
+                <button id="submitPost" type="submit" class="form-submit" onclick="submitPost(event,'','thread')" style="margin-left: auto;">Submit</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="reportModal" class="modal">
+
+        <!-- Modal content -->
+
+        <div id="report" class="message-wrapper">
+            <button id="postCloseModal" class="closeModalSpan" onclick="closeReportModal();">&times;</button>
+            <span class="post-heading">Report</span>
+
+            <div class="form-group">
+                <textarea id="reportMessage" class="message-item text-box form-control " placeholder="Reason for reporting..." rows="5" cols="80" spellcheck="false" minlength="1" maxlength="500"></textarea>
+                <div id="reportErrorSpan" class='text-danger error-span'></div>
+            </div>
+            <span style="padding-left: 5px;">                                          
+          <button id="submitReport" class="form-submit" style="margin-left: 83%;" onclick="submitReport('')">Report</button>
+      </span>
+        </div>
+
+    </div>
+    <div id="id" class="forum-table">
+        <div class="forum-heading">
+
+            <span class="forum-title-container">
+        <h3>Thread Listing</h3>
+      </span>
+        </div>
+        <div class="forum-thread-header">
+
+            <div class="forum-thread-header-left">
+                <div style="text-align: left;">
+                    <button type="button" class="add-thread-btn btn" onclick="startThread()">
+            <h5 style="font-size: medium;">+Add Thread</h5>
+          </button>
+                </div>
+
+                <label class="sort-label" for="thread-sort">Sort Threads</label>
+                <div class="sort-container">
+                    <select class="form-select sort-list" id="thread-sort">
+            <option value="0">↓	Newest</option>
+            <option value="1">↓	Oldest</option>
+            <option value="2">↓	Top Reply Count</option>
+            <option value="3">↓	Lowest Reply Count</option>
+          </select>
+                    <button class="form-submit sort-btn" onclick="sortThreads(event);" style="margin-top: 0px;">Sort</button>
+                </div>
+            </div>
+
+            <div class="forum-thread-header-right">
+                <input id="search-bar" class="form-control search-bar" type="text" placeholder="Search Forum">
+                <label class="sort-label" for="reply-sort">Sort Replies</label>
+                <div class="sort-container">
+                    <select class="form-select sort-list" id="reply-sort">
+            <option value="0" >↓ Newest</option>
+            <option value="1">↓	Oldest</option>
+            <option value="2">↓	Top Reply Count</option>
+            <option value="3">↓	Lowest Reply Count</option>
+          </select>
+                    <button class="form-submit sort-btn" onclick="sortReplies(event);" style="margin-top: 0px;">Sort</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="all-posts-container" class="all-posts-container">
+        </div>
+        <a class="back-to-top-btn" href="#backToTop">Back to Top ↑</a>
+    </div>
+
+    <div class="forum-filter" method="post">
+        <span class="forum-title-container" style="margin-bottom: 20px;">
+      <h3>Filter Forum</h3>
+    </span>
+
+        <div class="forum-filter-item">
+            <label class="filter-label" for="filter-username">Username</label>
+            <input class="form-control" type="text" id="filter-username" placeholder="User1, User2, User3....." value="">
+        </div>
+
+        <div class="forum-filter-item">
+            <label class="filter-label" for="filter-tags">Tags</label>
+            <input class="form-control" type="text" id="filter-tags" placeholder="Tag1, Tag2, Tag3....." value="">
+        </div>
+
+        <div class="forum-filter-item">
+            <label class="filter-label" for="filter-date">Date</label>
+            <input class="form-control" type="text" id="filter-date" placeholder="12/05/2021, 13/12/2002....." value="">
+        </div>
+
+        <div class="forum-filter-item deleted-filters">
+            <button class="form-submit form-submit deleted-filter-btn" onclick="filterOutDeleted()">Filter Deleted</button>
+            <button class="form-submit form-submit deleted-filter-btn" onclick="unfilterDeleted()"> Unfilter Deleted</button>
+        </div>
+
+        <div class="forum-filter-item">
+            <button id="apply-filter" class="form-submit" onclick="filterPosts();" style="width: 100%; margin-top: 80px;">Apply Filters</button>
+        </div>
+
+        <div class="forum-filter-item">
+            <button id="clear-filter" class="form-submit" onclick="clearFilters();" style="width: 100%; margin-top: 30px;">Clear Filters</button>
+        </div>
+
+    </div>
+</div>
+</div>
+<div id="postContainerClone" hidden>
+    <div id="mainContainerClone" class="main-post-container post-item">
+        <div id="showThreadContainerClone" class="show-thread-container">
+            <button class="arrow-up" id="replyTogglerClone" role="button" data-toggle="collapse" data-target="" aria-expanded="false" aria-controls=""></button>
+            <div class="info-hide" style="left: -40px; margin-top: -50px; width: 90px;">
+                <div class="info-box">Toggle Replies</div>
+            </div>
+        </div>
+        <div>
+            <div id="postContentClone" class="post-content post-message"></div>
+        </div>
+        <div id="attachmentContainerTogglerClone" class="toggler-container">
+            <button class="arrow-up" id="attachmentTogglerClone" role="button" data-toggle="collapse" data-target="" aria-expanded="false" aria-controls=""></button>
+            <div class="info-hide" style="right: 170px; margin-top: -50px;">
+                <div class="info-box">Toggle Attachment</div>
+            </div>
+        </div>
+        <button id="focusBtnClone" class="focus-btn"><img class="focus-icon" src="{{url_for('static', filename='forum-media/focus-icon.png')}}" alt="&amp;#128172;"></button>
+        <div class="info-hide" style="right: -45px; margin-top: -20px;">
+            <div class="info-box">Focus Thread</div>
+        </div>
+    </div>
+
+    <div id="attachmentContainerClone" class="forum-attachment-container collapse">
+        <img id="attachmentClone" class="forum-attachment" src="">
+    </div>
+    <div class="post-item post-buttons">
+        <button id="reportBtnClone" class="btn reply-button">Report<img class="reply-icon" src="{{url_for('static', filename='forum-media/error-icon.png')}}" alt="&amp;#x26A0;"></button>
+        <button id="restoreBtnClone" class="btn reply-button" hidden="">Restore<img class="reply-icon" src="{{url_for('static', filename='forum-media/restore-icon.jpg')}}"></button>
+        <button id="replyBtnClone" class="btn reply-button">Reply<img class="reply-icon" src="{{url_for('static', filename='forum-media/speech-bubble-icon.png')}}" alt="&amp;#128172;"></button>
+    </div>
+    <div class="post-item" style="align-self: flex-end;">
+        <div class="post-metadata"><small class="post-metadata-label">Posted By: </small><small class="posted-by"><button id="senderClone" class="metadata-btn"></button></small></div>
+        <div class="post-metadata"><small class="post-metadata-label">Date Posted: </small><small class="date-posted"><button id="dateClone" class="metadata-btn"></button></small></div>
+        <div class="post-metadata"><small class="post-metadata-label">Replies: </small><small id="replyCountClone" class="reply-count"></small></div>
+        <div class="post-metadata"><small class="post-metadata-label">Tags: </small><small id="tagsClone" class="tags"></small></div>
+        <div><button id="deleteBtnClone" class="reply-button" style="white-space: pre;"><img class="reply-icon" src="{{url_for('static', filename='inbox-media/bin-icon.png')}}">   Delete</button></div>
+    </div>
+</div>
+<a id="goToPost" href="#{% if session.get('goToPostID') %}{{ session['goToPostID'] }}{% endif %}" onclick="resetGoToPost()" hidden></a>
+
+<img id="speech-bubble" src="{{url_for('static', filename='forum-media/speech-bubble-icon.png')}}" alt="" hidden>
+<img id="error-icon" src="{{url_for('static', filename='forum-media/error-icon.png')}}" alt="" hidden>
+<img id="focus-icon" src="{{url_for('static', filename='forum-media/focus-icon.png')}}" alt="" hidden>
+<img id="delete-icon" src="{{url_for('static', filename='inbox-media/bin-icon.png')}}" hidden>
+<img id="restore-icon" src="{{url_for('static', filename='forum-media/restore-icon.jpg')}}" alt="" hidden>
+
+
+<script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+
+<style>
+    main {
+        height: max-content;
+        margin-bottom: auto;
+    }
+    
+    .page-container {
+        height: max-content;
+        width: 100%;
+        padding: 10px 10px 350px 0;
+    }
+</style>
+<script src="{{url_for('static', filename='jsFiles/forum.js')}}"></script>
+
+{% endblock %}

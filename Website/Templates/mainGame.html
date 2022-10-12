@@ -1,0 +1,95 @@
+
+{%extends "layout.html"%}
+
+{% block content %}
+
+<div class="page-container">
+    <div class="mainGame-wrapper">
+
+        <div class="game-variable-wrapper">
+            <button class="play-button mute-btn" onclick="stopMusic();">
+                <img id="mute" class="mute-icon" src="{{url_for('static', filename='mainGame-media/mute.png')}}" alt="" hidden>
+                <img id="unmute" class="mute-icon" src="{{url_for('static', filename='mainGame-media/unmute.png')}}" alt="">
+            </button>
+            <div id="game-display" class="game-display mainGame">
+                <div class="scoreboard-wrapper">
+                    <div>
+                        <div id="scoreboard1" class="scoreboard left">0</div>
+                        {% if mode == "multiplayer" %}
+                            <div class="scoreboard-label left">{{ current_user.get_room().get_game().get_player1().get_username() }}</div>
+                        {% endif %}
+                    </div>
+                    <div id="timer" class="scoreboard timer"></div>
+                    <div>
+                        
+                        <div id="scoreboard2" class="scoreboard right">{% if mode == "multiplayer" %}0{% endif %}</div>
+                        {% if mode == "multiplayer" %}
+                            <div class="scoreboard-label right">{{ current_user.get_room().get_game().get_player2().get_username()}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="visible-map">
+                    <canvas id="canvas"></canvas>
+                </div>
+            </div>    
+        </div>
+
+        {% if not mode == "preview" %}
+        <div id="ifGameFinished" class="game-finished-wrapper" hidden>
+            <button class="form-submit play-again-btn" onclick="restart()">Play Again ?</button>
+            <button class="form-submit play-again-btn" onclick="leaveGame()">Leave Game</button>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+    <img id="roadSprites" src="{{url_for('static', filename='mainGame-media/roadSprites.png')}}" alt="" hidden>
+
+    <img id="junction-up" src="{{url_for('static', filename='mainGame-media/junction-up.png')}}" alt="" hidden>
+
+    <img id="junction-down" src="{{url_for('static', filename='mainGame-media/junction-down.png')}}" alt="" hidden>
+
+    <img id="junction-left" src="{{url_for('static', filename='mainGame-media/junction-left.png')}}" alt="" hidden>
+
+    <img id="junction-right" src="{{url_for('static', filename='mainGame-media/junction-right.png')}}" alt="" hidden>
+
+    <img id="characterSprites" src="{{url_for('static', filename='mainGame-media/characterSprites.png')}}" alt="" hidden>
+
+    <img id="houseSprites" src="{{url_for('static', filename='mainGame-media/houseSprites.png')}}" alt="" hidden>
+
+    <audio id="audio1" src="{{url_for('static', filename='gameAudio/Retro_Platforming_-_David_Fesliyan.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio2" src="{{url_for('static', filename='gameAudio/8_Bit_Surf.mp3')}}" onended="playBackgroundMusic()"></audio> 
+    <audio id="audio3" src="{{url_for('static', filename='gameAudio/ChildsNightmare.ogg')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio4" src="{{url_for('static', filename='gameAudio/arcade-game-simple-background-music.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio5" src="{{url_for('static', filename='gameAudio/Defrini-Biogas.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio6" src="{{url_for('static', filename='gameAudio/Defrini-Spookie.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio7" src="{{url_for('static', filename='gameAudio/EggyToast-7.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio8" src="{{url_for('static', filename='gameAudio/EggyToast-Loseyourhead.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio9" src="{{url_for('static', filename='gameAudio/ElectronicFantasy.ogg')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio10" src="{{url_for('static', filename='gameAudio/fast-2020-06-18_-_8_Bit_Retro_Funk.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio11" src="{{url_for('static', filename='gameAudio/fast-2021-08-30_-_Boss_Time.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio12" src="{{url_for('static', filename='gameAudio/FASTER2019-01-02_-_8_Bit_Menu.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio13" src="{{url_for('static', filename='gameAudio/Gigakoops-BadYearBlimp.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio14" src="{{url_for('static', filename='gameAudio/Gigakoops-HoneyIsSweet,ButNostalgiaIsBitter.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio15" src="{{url_for('static', filename='gameAudio/Gigakoops-TheClosingofChaos.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio16" src="{{url_for('static', filename='gameAudio/Gigakoops-TheTasteofNostalgia.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio17" src="{{url_for('static', filename='gameAudio/Gigakoops-TunnelofHate.mp3')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio18" src="{{url_for('static', filename='gameAudio/IntergalacticOdyssey.ogg')}}" onended="playBackgroundMusic()"></audio>
+    <audio id="audio19" src="{{url_for('static', filename='gameAudio/Slower-Tempo-_A_Bit_Of_Hope_-_David_Fesliyan.mp3')}}" onended="playBackgroundMusic()"></audio>
+
+    
+    <audio id="score" src="{{url_for('static', filename='gameAudio/score.mp3')}}"></audio>
+    <audio id="footstep" src="{{url_for('static', filename='gameAudio/footstep.mp3')}}"></audio>
+    <audio id="wrong" src="{{url_for('static', filename='gameAudio/wrong.mp3')}}"></audio>
+
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='jsFiles/MainGame.js')}}"></script>
+
+    <style>
+
+        main{
+            height: max-content;
+            margin-bottom: auto;
+        }
+    </style>
+{% endblock %}

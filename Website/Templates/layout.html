@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+
+    <title>{{title}}</title>
+    <title>Home</title>
+</head>
+
+<body onload="{{onload}}">
+
+
+    {% if session["url"] != "previewGame" or not current_user.is_authenticated %}
+    <header id="header" class="body-item">
+
+        <!--Navbar-->
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel nav-fill ">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+            <div class="collapse navbar-collapse" id="navbarToggle">
+                <div class="navbar-nav">
+
+                    <a class="nav-item" href='{{url_for("home")}}'>Home</a> {% if current_user.is_authenticated %}
+                    <hr>
+                    <a class="nav-item" href="{{url_for('games')}}">Games</a>
+                    <hr>
+                    <a class="nav-item" href="{{url_for('forum')}}">Forum</a>
+                    <hr> {% if current_user.get_role1() == "teacher" %}
+                    <a class="nav-item" href="{{url_for('myClasses')}}"> Manage Classes</a>
+                    <hr> {% endif %}
+                    <a class="nav-item" href="{{url_for('inbox')}}">Inbox
+                  <span class="inbox-alert" id="inbox-alert">{{ current_user.get_unreadInboxCount() }}</span>
+                </a> {% if current_user.get_role2() == "moderator" or current_user.get_role3() == "admin" %}
+                    <hr>
+                    <span class="admin-link-toggler-span">
+                  <button class="btn admin-link-toggler nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#admin-div" aria-expanded="false" aria-controls="admin-div">
+                    >
+                  </button>
+                  <div class="info-hide">
+                    <div class="info-box">
+                      Toggle Admin Tabs
+                    </div>
+                  </div>
+
+                </span> {% endif %}
+
+                    <div id="admin-div" class="admin-link-wrapper collapse collapse-horizontal">
+                        {% if current_user.get_role2() == "moderator" %}
+                        <hr>
+                        <a class="nav-item admin-link" href="{{url_for('manageReports')}}">Manage Reports</a> {% endif %} {% if current_user.get_role3() == "admin" %}
+                        <hr>
+                        <a class="nav-item admin-link" href="{{url_for('manageModerators')}}">Assign Moderators</a> {% endif %}
+                    </div>
+                    <hr>
+                    <a class="nav-item" href="{{url_for('logout')}}">Logout</a> {% else %}
+                    <hr>
+                    <a class="nav-item" href="{{url_for('login')}}">Login</a>
+                    <hr>
+                    <a class="nav-item" href="{{url_for('register')}}">Sign Up</a>
+                    <hr> {% endif %}
+                </div>
+            </div>
+        </nav>
+
+
+    </header>
+    {% endif %} {%with messages = get_flashed_messages(with_categories=true)%} {%if messages%} {% for cateory,message in messages%}
+    <div class="alert alert-{{cateory}} alert-dismissible fade show" role="alert" style=" height: 80px; margin: 10px;">
+        <strong>{{message}}</strong>
+    </div>
+    {%endfor%} {%endif%} {%endwith%}
+
+    <main>
+        <div id="flash-message" class="alert alert-dismissible flash-message fade-out" role="alert"></div>
+
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content message-wrapper">
+                <div id="closeModal" class="closeModalSpan">&times;</div>
+                <div id="modalQuestion">Are you sure ?</div>
+                <div class="modal-btn-container">
+                    <button id="modalYes" class="form-submit">Yes</button>
+                    <button id="modalNo" class="form-submit">No</button>
+                </div>
+            </div>
+
+        </div>
+
+        {% block content %} {% endblock %}
+
+    </main>
+
+    <!--footer-->
+    <footer id="footer">
+        <div class="footer-item">
+            ©Dalu Limited. 2021 Privacy Policy Legal Terms & Conditions Cookie Policy
+        </div>
+    </footer>
+
+    {% if current_user.is_authenticated %}
+    <script src="{{url_for('static', filename='jsFiles/webFunctions.js')}}"></script>
+    {% endif %}
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

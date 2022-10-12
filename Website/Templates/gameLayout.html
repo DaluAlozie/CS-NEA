@@ -1,0 +1,59 @@
+{%extends "layout.html"%}
+
+{% block content %}
+
+<div class="page-container" >
+
+    <div class="sidebar-wrapper collapse-sidebar" id="sidebar" >
+      
+      <ul class="sidebar-nav" >
+        <li class="sidebar-heading">
+          <img style="height: 20%; width: 20%;" src="{{url_for('static', filename='sidebar-media/profile-icon.jpg')}}" alt="">
+          My Profile
+        </li>
+        <hr>
+        <a href="{{url_for('myGames')}}" class="sidebar-item"><li><img class="icon" src="{{url_for('static', filename='sidebar-media/game-icon.png')}}" alt="&#127918;"> My Games</li></a>
+        <hr>
+        <a href="{{url_for('createGame')}}" class="sidebar-item"><li><img class="icon" src="{{url_for('static', filename='sidebar-media/build-icon.png')}}" alt="&#128101;"> Build Game</li></a>
+        <hr>
+        <a href="{{url_for('joinGame')}}" class="sidebar-item"><li><img class="icon" src="{{url_for('static', filename='sidebar-media/join-game-icon.png')}}" alt="&#128101;"> Join Game</li></a>
+        <hr> 
+        <a href="#" class="sidebar-item"><li><img class="icon" src="{{url_for('static', filename='sidebar-media/sign-out-icon.png')}}" alt="&#xf08b;">Sign Out</li></a>
+        <hr>
+      </ul>
+    </div>
+
+
+    <button class="sidebar-collapse-btn btn"  onclick="toggleTwo('sidebar','expand-sidebar','collapse-sidebar')"></button>
+    <div style="height: 100%; width: 100%;">
+
+    {% block content2 %}
+
+
+
+
+    {% endblock %}
+  </div>
+
+      
+</div>
+
+
+<style>
+  main{
+    height: max-content;
+    margin-bottom: auto;
+    margin-right: auto;
+  }
+
+  .page-container{
+    justify-content:left; 
+    height: fit-content; 
+    width: 100%; 
+    align-self: flex-end;
+    margin-bottom: auto;
+    margin-right: auto;
+  }
+</style>
+
+{% endblock %}

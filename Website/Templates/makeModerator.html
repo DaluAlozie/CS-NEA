@@ -1,0 +1,75 @@
+{%extends "layout.html"%}
+
+{% block content %}
+<div class="page-container">
+    <div class="class-banner admin-page" style="width: 99%;">
+        <h1 class="">Moderators</h1> 
+    </div>
+
+    <div class="class-form-wrapper">
+        <div class="form class-form make-mod-form">
+            <div class="row add-student-wrapper admin-page"  style="width:max-content;">
+                <div class="col" >
+                    <input type="text" id="newModerator" class="form-control student-input admin-page" placeholder="Enter Username">
+                </div>
+                <div class="col">
+                    <button onclick="assignModerator()" class="form-submit remove-item-btn">✛</button>
+                    <div class="info-hide" style="margin-top: -15px; margin-left: 50px;">
+                        <div class="info-box">
+                            Add Moderator
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="class-form-body make-mod-form">
+                <div class="row form-item">
+                    <div id="moderatorList" class="col student-list mod-list" >
+                        {% for moderator in allModerators %}
+                        {% if moderator.upper() != current_user.get_username().upper() %}
+                        <div class="class-list-item" >
+                            <button onclick="demoteUser(event,'{{moderator}}')" class="form-submit remove-item-btn">–</button>
+                            <div class="info-hide" style="margin-top: -15px; margin-left: -90px;">
+                                <div class="info-box">
+                                    Demote Moderator
+                                </div>
+                            </div>
+                            <div class="class-student-name">{{moderator.upper()}}</div>   
+                        </div>
+                        <hr class="reply-seperator"> 
+                        {% endif %}
+                        {% endfor %}              
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="newModeratorTemplate" class="class-list-item" hidden>
+        <button onclick="demoteUser()" class="form-submit remove-item-btn">–</button>
+        <div class="info-hide" style="margin-top: -15px; margin-left: -90px;">
+            <div class="info-box">
+                Demote Moderator
+            </div>
+        </div>
+        <div class="class-student-name"></div>    
+    </div>
+
+</div>
+<hr class="reply-seperator make-mod"> 
+
+<style>
+    .page-container{
+    width: 99.9%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;        
+    }
+    main{
+        height: max-content;
+        margin-bottom: auto;
+    }
+</style>
+
+<script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+<script src="{{url_for('static', filename='jsFiles/makeModerator.js')}}"></script>
+{% endblock %}
