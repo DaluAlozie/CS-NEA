@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField,DateField,RadioField,FileField
 from wtforms.validators import DataRequired, Length, EqualTo, Email, ValidationError
-from wtforms_validators import ActiveUrl, Alpha, AlphaNumeric
+from wtforms_validators import AlphaNumeric
 
 import sqlite3
 from badwordsAPI import *

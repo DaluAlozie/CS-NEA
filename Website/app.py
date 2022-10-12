@@ -1,15 +1,10 @@
 from flask import Flask, render_template, url_for, flash, redirect, session, jsonify, make_response
 from flask import json
 from flask.globals import request
-from flask.json import load
-from flask_user import decorators
-from flask_user.decorators import roles_required
 from forms import RegistrationForm, LoginForm
 import os
-from datetime import datetime
 from database import *
 from flask_login import LoginManager, login_user,current_user,logout_user,login_required
-from functools import total_ordering, wraps
 from flask_socketio import SocketIO, emit,send,join_room, leave_room,disconnect
 import socket
 import time
@@ -1009,4 +1004,4 @@ Report.loadReports()
 Role.set_moderators()
 
 if __name__== '__main__':
-    socketio.run(app,host=local_ip_address,port=port,debug=True)
+    socketio.run(app,host=local_ip_address,port=port,debug=True,allow_unsafe_werkzeug=True)

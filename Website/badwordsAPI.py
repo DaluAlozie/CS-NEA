@@ -1,8 +1,6 @@
 import requests
 import json
 
-from sqlalchemy import false
-
 url = "https://api.promptapi.com/bad_words?censor_character={censor_character}"
 
 def checkBadwords(message):

@@ -38,8 +38,9 @@ stripe.exe
 .vscode/*
 .VSCodeCounter/*
 
-.png
-.jpeg
-.ttf
-.ogg
-
+*.png
+*.jpeg
+*.ttf
+*.ogg
+*.db
+*/__pycache__/*
